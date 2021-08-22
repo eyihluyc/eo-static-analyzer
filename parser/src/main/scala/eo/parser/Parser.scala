@@ -3,15 +3,10 @@ package eo.parser
 import com.github.tarao.nonempty.collection.NonEmpty
 import eo.core.ast._
 import eo.core.ast.astparams.EOExprOnly
-
 import higherkindness.droste.data.Fix
-import eo.backend.eolang.ToEO.instances._
-import eo.backend.eolang.ToEO.ops._
-import eo.backend.eolang.inlineorlines.ops._
-
 
 import scala.util.parsing.combinator.Parsers
-import scala.util.parsing.input.{NoPosition, Position, Reader}
+import scala.util.parsing.input.{ NoPosition, Position, Reader }
 
 class WorkflowTokenReader(val tokens: Seq[Token]) extends Reader[Token] {
   override def first: Token = tokens.head
@@ -37,27 +32,10 @@ object Parser extends Parsers {
 
   def apply(code: String): Either[CompilationError, EOProg[EOExprOnly]] = {
     val result = for {
-      tokens <- {
-        println(s"\nSOURCE CODE:\n$code")
-        Lexer(code)
-      }
-      ast <- {
-        println(s"\nTOKENS:\n$tokens")
-        parse(tokens)
-      }
+      tokens <- Lexer(code)
+      ast <- parse(tokens)
     } yield ast
 
-    result match {
-      case Left(value) =>
-        value match {
-          case LexerError(msg) => println(s"LEXER ERROR: $msg")
-          case ParserError(msg) => println(s"PARSER ERROR: $msg")
-        }
-      case Right(value) =>
-        println(s"\nAST:\n$value")
-        println("\nRESTORED PROGRAM:")
-        println(value.toEO.allLinesToString)
-    }
     result
   }
 

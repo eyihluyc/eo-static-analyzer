@@ -14,11 +14,13 @@ lazy val `eo-static-analyzer-app` = project
   .dependsOn(
     utils,
     core,
+    parser,
     backends,
   )
   .aggregate(
     utils,
     core,
+    parser,
     backends,
   )
   .settings(

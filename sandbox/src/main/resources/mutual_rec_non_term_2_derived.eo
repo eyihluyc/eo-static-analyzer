@@ -1,0 +1,24 @@
++package sandbox
++alias stdout org.eolang.io.stdout
++alias sprintf org.eolang.txt.sprintf
+
+[] > base
+  memory > x
+  [self v] > n
+    self.x.write v > @
+  [self v] > m
+    self.n self v > @
+
+[] > derived1
+  base > @
+  [self v] > m
+    self.n self v > @
+  [self v] > n
+    self.m self v > @
+
+[] > derived2
+  base > @
+  [self v] > m
+    self.n self v > @
+  [self v] > n
+    self.m self v > @
