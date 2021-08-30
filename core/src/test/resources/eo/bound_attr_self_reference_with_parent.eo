@@ -1,0 +1,8 @@
+# [ a -> [ b -> ^.a.b ] ].a.b
+
++package sandbox
+
+[] > app
+  [] > a
+    ^.a.b > b
+  a.b > @

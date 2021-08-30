@@ -1,0 +1,8 @@
+# [ @ -> $ ]
+
++package sandbox
+
+[] > app
+  [] > a
+    a > @
+  a.attribute > @

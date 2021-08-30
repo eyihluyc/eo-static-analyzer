@@ -1,0 +1,11 @@
+# [ obj -> [a -> ?]
+# , copy -> obj(a -> copy.a)
+# ].copy.a
+
++package sandbox
+
+[] > app
+  [a] > obj
+  obj > copy
+    copy.a
+  copy.a > @
